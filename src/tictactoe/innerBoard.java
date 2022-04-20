@@ -13,6 +13,26 @@ public class innerBoard {
     }
 
     //methods
+    public int[][] getBoard() {
+        return board;
+    }
+
+    //for the symbol int, we can change it based on the turn counter
+    public void updateBoard(int symbol, int xpos, int ypos){
+            board[xpos][ypos] = symbol;
+    }
+
+
+
+    public boolean checkWin(){
+
+        boolean returnVal = false;
+        //000
+        //000
+        //000
+        return returnVal;
+    }
+
 
     @Override
     public String toString(){
@@ -30,15 +50,4 @@ public class innerBoard {
         return returnVal;
 
     }
-
-    public int[][] getBoard() {
-        return board;
-    }
-
-    public void updateBoard(int symbol, int xpos, int ypos){
-
-        board[xpos][ypos] = symbol;
-
-    }
-
 }
