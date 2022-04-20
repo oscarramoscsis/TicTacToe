@@ -19,15 +19,24 @@ public class test {
         name = input.next();
         Player player2 = new Player(name, 2);
         System.out.println("Hello "+name+"!");
+
         System.out.println("make a move:");
         int xCord;
         xCord = input.nextInt() - 1;
         int yCord;
         yCord = input.nextInt() - 1;
-
-        workingBoard.updateBoard(1,xCord,yCord);
-
+        workingBoard.updateBoard(1, xCord, yCord);
         System.out.println(workingBoard);
+
+        while(gameIsWon != true) {
+            System.out.println("make a move:");
+            xCord = input.nextInt() - 1;
+            yCord = input.nextInt() - 1;
+            workingBoard.updateBoard(1, xCord, yCord);
+            System.out.println(workingBoard);
+
+            gameIsWon = workingBoard.checkWin();
+        }
 
 
 
