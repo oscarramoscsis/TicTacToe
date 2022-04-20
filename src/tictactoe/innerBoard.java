@@ -14,13 +14,20 @@ public class innerBoard {
 
     //methods
 
-    public void print(){
+    @Override
+    public String toString(){
+        String returnVal = "";
+
         for (int i = 0; i < 3 ; i++) {
             for (int j = 0; j <3 ; j++) {
-                System.out.print(board[i][j]);
+                //System.out.print(board[i][j]);
+                returnVal += board[i][j];
             }
-            System.out.println();
+            //System.out.println();
+            returnVal += "\n";
         }
+
+        return returnVal;
 
     }
 
@@ -28,7 +35,10 @@ public class innerBoard {
         return board;
     }
 
-    public void setBoard(int[][] board) {
-        this.board = board;
+    public void updateBoard(int symbol, int xpos, int ypos){
+
+        board[xpos][ypos] = symbol;
+
     }
+
 }
