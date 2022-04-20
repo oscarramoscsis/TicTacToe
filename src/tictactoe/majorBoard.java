@@ -2,8 +2,8 @@ package tictactoe;
 
 public class majorBoard {
 
-   innerBoard board1 = new innerBoard();
-   innerBoard board2 = new innerBoard();
+    innerBoard board1 = new innerBoard();
+    innerBoard board2 = new innerBoard();
     innerBoard board3 = new innerBoard();
     innerBoard board4 = new innerBoard();
     innerBoard board5 = new innerBoard();
