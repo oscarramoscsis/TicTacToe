@@ -9,6 +9,10 @@ public class test {
 
         workingBoard.print();
 
+        System.out.println("this is a test");
+
+        workingBoard.print();
+
 
     }
 }
