@@ -12,6 +12,8 @@ public class Player {
         this.name = name;
         this.id = id;
     }
+    //methods
+
     public String getName() {
         return name;
     }
@@ -19,8 +21,6 @@ public class Player {
     public int getId() {
         return id;
     }
-
-    //methods
 
     @Override
     public String toString() {
