@@ -1,23 +1,27 @@
 package GUItest;
-import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.EventQueue;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 public class GUItest extends JFrame{
-    private JPanel panel1;
-    private JButton button1;
+    /**
+	 * 
+	 */
+
+    private int counter = 0;
 private int i;
 private int j;
-
+private JLabel L;
+private BufferedImage marker;
+private GamePanel gamePanel;
 
 
 
@@ -44,33 +48,54 @@ private int j;
          */
         public GUItest() {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setBounds(100, 100, 500, 500);
+            setBounds(100, 100, 1000, 1000);
             contentPane = new JPanel();
             contentPane.setBackground(Color.WHITE);
             contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
             setContentPane(contentPane);
             contentPane.setLayout(new GridLayout(3, 3, 0, 0));
-//            for (i = 0 ; i< 9; i++) {
+            
+            JGuiLabel [][] grid;
+            
+            for (i = 0 ; i< 9; i++) {
             JPanel panel = new JPanel();
             panel.setBorder(new EmptyBorder(5, 5, 5, 5));
             panel.setBackground(Color.RED);
             contentPane.add(panel);
             panel.setLayout(new GridLayout(3, 3, 0, 0));
-//            for (j = 0; j<9; j++) {
-            JPanel panel_1 = new JPanel();
-            panel_1.setBorder(new LineBorder(new Color(255, 200, 0), 3));
-            panel.add(panel_1);
-            panel_1.setLayout(new GridLayout(0, 1, 0, 0));
             
-            JButton button = new JButton("");
-            button.addActionListener(new ActionListener() {
-            	public void actionPerformed(ActionEvent e) {
-            		System.out.print("hi");
+            for (j = 0; j<9; j++) {
+            JPanel panel_1 = new JPanel();
+            panel_1.addMouseListener(new MouseAdapter() {
+            	@Override
+            	public void mouseClicked(MouseEvent e) {
+
+        			JPanel x = (JPanel) e.getComponent();
+            		JLabel y = (JLabel) x.getComponent(0);
+            		counter++;
+            		if (counter % 2 !=0) {
+            			
+            		y.setIcon(new ImageIcon(GUItest.class.getResource("/new/O.png")));
+            		}
+            		else if (counter % 2 == 0)
+            			y.setIcon(new ImageIcon(GUItest.class.getResource("/new/X.png")));
+            		
+            		
+                      
+                    
             	}
             });
-            panel_1.add(button);
-//            }
-//            }
+            panel_1.setBorder(new LineBorder(new Color(255, 200, 0), 3));
+            panel.add(panel_1);
+            panel_1.setLayout(new GridLayout(1, 1, 0, 0));
+            
+            L = new JLabel("");
+            //L.setIcon(new ImageIcon(GUItest.class.getResource("/new/X.png")));
+            panel_1.add(L);
+
+
+            }
+            }
       
 
         }
