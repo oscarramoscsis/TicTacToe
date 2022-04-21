@@ -44,16 +44,17 @@ public class test {
         yCord = input.nextInt() - 1;
 
         workingBoard.updateBoard(turnId, xCord, yCord);
-        System.out.println(workingBoard);
         innerGameIsWon = workingBoard.checkWin();
         System.out.println(mainBoard);
         workingBoard = mainBoard.getInnerBoard(xCord, yCord);
-
         counter++;
 
         while(outterGameIsWon != true) {
             while (innerGameIsWon != true) {
+
                 System.out.println(workingBoard);
+                System.out.printf("(%d, %d) %n", (xCord+1), (yCord+1));
+
 
                 if (counter % 2 == 0) {
                     turnId = 2;
@@ -71,26 +72,37 @@ public class test {
                     workingBoard.updateBoard(turnId, xCord, yCord);
                     System.out.println(workingBoard);
                     innerGameIsWon = workingBoard.checkWin();
-                } else
-                    System.out.println("Invalid, try again!");
-
+                } else {
+                    while(workingBoard.checkValid(xCord,yCord) != true) {
+                        System.out.println("Invalid, try again!");
+                        System.out.println("make a move:");
+                        xCord = input.nextInt() - 1;
+                        yCord = input.nextInt() - 1;
+                    }
+                    workingBoard.updateBoard(turnId, xCord, yCord);
+                    System.out.println(workingBoard);
+                    innerGameIsWon = workingBoard.checkWin();
+                }
                 counter++;
                 System.out.println(mainBoard);
+                workingBoard = mainBoard.getInnerBoard(xCord, yCord);
             }
 
             if (counter % 2 == 0) {
                 turnId = 2;
-                System.out.println(player1.getName() + " wins!");
+                System.out.println(player1.getName() + " wins the board!");
                 player1.playerWin();
                 workingBoard.setWinnerID(turnId);
+                innerGameIsWon = false;
             } else {
                 turnId = 1;
-                System.out.println(player2.getName() + " wins!");
+                System.out.println(player2.getName() + " wins the board!");
                 player2.playerWin();
                 workingBoard.setWinnerID(turnId);
+                innerGameIsWon = false;
             }
-
             outterGameIsWon = mainBoard.checkWin();
         }
+        System.out.println("game over");
     }
 }

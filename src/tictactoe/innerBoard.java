@@ -31,6 +31,7 @@ public class innerBoard {
             return true;
         } else
             return false;
+
     }
 
 
@@ -95,6 +96,7 @@ public class innerBoard {
             //System.out.println();
             returnVal += "\n";
         }
+
 
         return returnVal;
 

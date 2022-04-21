@@ -62,7 +62,9 @@ public class majorBoard {
     }
 
 
-
+    public int[][] getBoard() {
+        return board;
+    }
 
     @Override
     public String toString() {
