@@ -19,7 +19,15 @@ public class innerBoard {
 
     //for the symbol int, we can change it based on the turn counter
     public void updateBoard(int symbol, int xpos, int ypos){
-            board[xpos][ypos] = symbol;
+        board[xpos][ypos] = symbol;
+    }
+
+    //checks if the position is valid before updating the board
+    public boolean checkValid(int xpos, int ypos){
+        if (board[xpos][ypos] == 0){
+            return true;
+        } else
+            return false;
     }
 
 
@@ -50,7 +58,6 @@ public class innerBoard {
             if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[1][1] != 0 ){
               returnVal = true;
             }
-
 
 
         return returnVal;

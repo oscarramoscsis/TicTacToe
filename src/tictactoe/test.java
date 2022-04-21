@@ -9,6 +9,7 @@ public class test {
         innerBoard workingBoard = myMainBoard.getInnerBoard(1, 1);
 
         boolean gameIsWon = false;
+        boolean moveValid;
 
         Scanner input = new Scanner(System.in);
         System.out.println("Enter your name!");
@@ -32,11 +33,15 @@ public class test {
             System.out.println("make a move:");
             xCord = input.nextInt() - 1;
             yCord = input.nextInt() - 1;
-            workingBoard.updateBoard(1, xCord, yCord);
-            System.out.println(workingBoard);
 
-            gameIsWon = workingBoard.checkWin();
+            if (workingBoard.checkValid(xCord, yCord)) {
+                workingBoard.updateBoard(1, xCord, yCord);
+                System.out.println(workingBoard);
+                gameIsWon = workingBoard.checkWin();
+            } else
+                System.out.println("Invalid, try again!");
         }
+
 
 
 
