@@ -1,32 +1,22 @@
 package GUItest;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Graphics2D;
 
+import javax.swing.*;
+import java.awt.EventQueue;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
-
-
 import javax.swing.ImageIcon;
-//import java.awt.event.ActionListener;
-//import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 public class GUItest extends JFrame{
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private int counter = 0;
 
+    private int counter = 0;
 private int i;
 private int j;
 private JLabel L;
@@ -105,13 +95,6 @@ private GamePanel gamePanel;
             }
       
 
-        }
-        BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
-            BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
-            Graphics2D graphics2D = resizedImage.createGraphics();
-            graphics2D.drawImage(originalImage, 0, 0, targetWidth, targetHeight, null);
-            graphics2D.dispose();
-            return resizedImage;
         }
 
         }
