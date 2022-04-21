@@ -54,6 +54,9 @@ private GamePanel gamePanel;
             contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
             setContentPane(contentPane);
             contentPane.setLayout(new GridLayout(3, 3, 0, 0));
+            
+            JGuiLabel [][] grid;
+            
             for (i = 0 ; i< 9; i++) {
             JPanel panel = new JPanel();
             panel.setBorder(new EmptyBorder(5, 5, 5, 5));
