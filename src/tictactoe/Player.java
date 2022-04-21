@@ -7,19 +7,26 @@ public class Player {
 
     //constructor
 
+
     public Player(String name, int id) {
         this.name = name;
         this.id = id;
     }
+    public String getName() {
+        return name;
+    }
 
+    public int getId() {
+        return id;
+    }
 
     //methods
 
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
+                "name='" + getName() + '\'' +
+                ", id=" + getId() +
                 '}';
     }
 }
