@@ -7,6 +7,9 @@ public class innerBoard {
             {0,0,0},
             {0,0,0} };
 
+        //tells you who has won the board.
+    private int winnerID = 0;
+
     //constructor
     public innerBoard() {
 
@@ -59,11 +62,26 @@ public class innerBoard {
               returnVal = true;
             }
 
-
-
         return returnVal;
     }
 
+    //resets the board
+    public void resetBoard(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = 0;
+            }
+        }
+
+    }
+
+    public int getWinnerID() {
+        return winnerID;
+    }
+
+    public void setWinnerID(int winnerID) {
+        this.winnerID = winnerID;
+    }
 
     @Override
     public String toString(){

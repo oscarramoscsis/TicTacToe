@@ -27,4 +27,19 @@ public class majorBoard {
 
     }
 
+    @Override
+    public String toString() {
+        String returnVal = "";
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                String tempBoard = majorBoardArray[i][j].toString();
+                returnVal += tempBoard;
+                returnVal += "\n";
+            }
+            returnVal += "\n";
+        }
+
+        return returnVal;
+    }
 }
