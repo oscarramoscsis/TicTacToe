@@ -3,11 +3,12 @@ package tictactoe;
 public class innerBoard {
 
     //fields
+
     private int[][] board = { {0,0,0},
             {0,0,0},
             {0,0,0} };
 
-        //tells you who has won the board.
+
     private int winnerID = 0;
 
     //constructor
