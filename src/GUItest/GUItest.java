@@ -1,6 +1,8 @@
 package GUItest;
 
 
+import tictactoe.*;
+
 import javax.swing.*;
 import java.awt.EventQueue;
 import javax.swing.border.EmptyBorder;
@@ -11,13 +13,20 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
+
 public class GUItest extends JFrame{
     /**
 	 *
 	 */
 
-    private int counter = 0;
-private int i;
+   // private int counter = 0;
+//    private int turnId;
+//    //private majorBoard mainBoard;
+//    private innerBoard workingBoard;
+//    private majorBoard mainBoard = new majorBoard();
+
+    private int i;
 private int j;
 private JGuiLabel L;
 private BufferedImage marker;
@@ -31,6 +40,7 @@ private GamePanel gamePanel;
          * Launch the application.
          */
         public static void main(String[] args) {
+
             EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     try {
@@ -41,6 +51,7 @@ private GamePanel gamePanel;
                     }
                 }
             });
+
         }
 
         /**
@@ -73,17 +84,29 @@ private GamePanel gamePanel;
         			JPanel x = (JPanel) e.getComponent();
             		JGuiLabel y = (JGuiLabel) x.getComponent(0);
 
-                    System.out.println("major pos: "+y.getMX());
+
+                    System.out.println("Major pos: "+y.getMX());
+                    System.out.println("major pos x:"+ y.getMajorX());
                     System.out.println("Minor pos: "+y.getMY());
+                    System.out.println("Major pos y: "+y.getMajorY());
 
-                    counter++;
-            		if (counter % 2 !=0) {
 
+
+                    buttonPressedUpdate(y.getMajorX(),y.getMajorY(), y.getInnerX(), y.getInnerY());
+
+                    if (guiController.counter % 2 == 0) {
+//                        turnId = 2;
+                        guiController.playerTurn = 2;
+                    } else {
+//                        turnId = 1;
+                        guiController.playerTurn = 1;
+                    }
+
+            		if (guiController.playerTurn == 1) {
             		y.setIcon(new ImageIcon(GUItest.class.getResource("/new/O.png")));
             		}
-            		else if (counter % 2 == 0)
+            		else if (guiController.playerTurn == 2)
             			y.setIcon(new ImageIcon(GUItest.class.getResource("/new/X.png")));
-
 
             	}
             });
@@ -98,10 +121,21 @@ private GamePanel gamePanel;
 
             }
             }
-
-
         }
 
+        public void buttonPressedUpdate(int majorx, int majory, int innerx, int innery ){
+
+            guiController.workingBoard = guiController.mainBoard.getInnerBoard(majorx-1,majory-1);
+
+            guiController.workingBoard.updateBoard(guiController.playerTurn, (innerx-1), (innery-1));
+
+            guiController.counter++;
+
+            System.out.println(guiController.workingBoard);
+            System.out.println(guiController.mainBoard);
+
+            guiController.innerGameWon = guiController.workingBoard.checkWin();
+        }
         }
 
 
