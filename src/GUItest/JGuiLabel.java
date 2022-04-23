@@ -5,8 +5,7 @@ import javax.swing.JLabel;
 public class JGuiLabel extends JLabel {
 	private int MX;
 	private int MY;
-	private int majorPosition = MX;
-	private int innerPosition = MY;
+
 //	private int IX;
 //	private int IY;
 
@@ -36,14 +35,6 @@ public class JGuiLabel extends JLabel {
 
 	public void setMY(int MY) {
 		this.MY = MY;
-	}
-
-	public int getMajorPosition() {
-		return majorPosition;
-	}
-
-	public int getInnerPosition() {
-		return innerPosition;
 	}
 
 	//
