@@ -3,41 +3,63 @@ package GUItest;
 import javax.swing.JLabel;
 
 public class JGuiLabel extends JLabel {
-	private int majorPos;
-	private int innerPos;
+	private int MX;
+	private int MY;
+	private int majorPosition = MX;
+	private int innerPosition = MY;
 //	private int IX;
 //	private int IY;
 
-//	public JGuiLabel(int MX, int MY, int IX, int IY) {
-//		super();
-//		this.MX = MX;
-//		this.MY = MY;
-////		this.IX = IX;
-////		this.IY = IY;
-//	}
+	public JGuiLabel(int MX, int MY, int IX, int IY) {
+		super();
+		this.MX = MX;
+		this.MY = MY;
+//		this.IX = IX;
+//		this.IY = IY;
+	}
 
 	public JGuiLabel(){
 		super();
 	}
 
-	public JGuiLabel(int majorPos, int innerPos) {
-		this.majorPos = majorPos;
-		this.innerPos = innerPos;
+	public int getMX() {
+		return MX;
 	}
 
-	public int getMajorPos() {
-		return majorPos;
+	public void setMX(int MX) {
+		this.MX = MX;
 	}
 
-	public void setMajorPos(int majorPos) {
-		this.majorPos = majorPos;
+	public int getMY() {
+		return MY;
 	}
 
-	public int getInnerPos() {
-		return innerPos;
+	public void setMY(int MY) {
+		this.MY = MY;
 	}
 
-	public void setInnerPos(int innerPos) {
-		this.innerPos = innerPos;
+	public int getMajorPosition() {
+		return majorPosition;
 	}
+
+	public int getInnerPosition() {
+		return innerPosition;
+	}
+
+	//
+//	public int getIX() {
+//		return IX;
+//	}
+//
+//	public void setIX(int IX) {
+//		this.IX = IX;
+//	}
+//
+//	public int getIY() {
+//		return IY;
+//	}
+//
+//	public void setIY(int IY) {
+//		this.IY = IY;
+//	}
 }
