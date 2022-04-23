@@ -20,17 +20,17 @@ public class test {
             }
         });
 
-//        majorBoard mainBoard = new majorBoard();
-        Scanner input = new Scanner(System.in);
-        boolean innerGameIsWon = false;
-        boolean outterGameIsWon = false;
-
-//        innerBoard workingBoard = new innerBoard();
-//        int counter = 1;
-        int turnId = 1;
-
-        int xCord;
-        int yCord;
+////        majorBoard mainBoard = new majorBoard();
+//        Scanner input = new Scanner(System.in);
+//        boolean innerGameIsWon = false;
+//        boolean outterGameIsWon = false;
+//
+////        innerBoard workingBoard = new innerBoard();
+////        int counter = 1;
+//        int turnId = 1;
+//
+//        int xCord;
+//        int yCord;
 
 
 //        GUItest myGui = new GUItest();

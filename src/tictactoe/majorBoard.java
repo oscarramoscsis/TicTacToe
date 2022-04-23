@@ -28,6 +28,14 @@ public class majorBoard {
 
     }
 
+    public void updateBoard(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = majorBoardArray[i][j].getWinnerID();
+            }
+        }
+    }
+
     public boolean checkWin(){
 
         boolean returnVal = false;
@@ -62,8 +70,16 @@ public class majorBoard {
     }
 
 
-    public int[][] getBoard() {
-        return board;
+    public String getBoard() {
+        String myBoard = "";
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                myBoard += board[i][j];
+            }
+            myBoard += "\n";
+        }
+        return myBoard;
     }
 
     @Override

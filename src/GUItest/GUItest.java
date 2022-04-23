@@ -132,9 +132,15 @@ private GamePanel gamePanel;
             guiController.counter++;
 
             System.out.println(guiController.workingBoard);
-            System.out.println(guiController.mainBoard);
-
             guiController.innerGameWon = guiController.workingBoard.checkWin();
+
+            if(guiController.innerGameWon == true){
+                guiController.workingBoard.setWinnerID(guiController.playerTurn);
+                guiController.mainBoard.updateBoard();
+            }
+
+            System.out.println(guiController.mainBoard.getBoard());
+
         }
         }
 
