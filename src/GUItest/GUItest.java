@@ -71,7 +71,7 @@ public class GUItest extends JFrame {
 
             for (j = 0; j < 9; j++) {
                 JPanel panel_1 = new JPanel();
-
+//bruh
                 //grid [i][j];
                 panel_1.addMouseListener(new MouseAdapter() {
                     @Override
