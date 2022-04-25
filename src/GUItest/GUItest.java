@@ -59,7 +59,7 @@ private GamePanel gamePanel;
          */
         public GUItest() {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setBounds(100, 100, 1000, 1000);
+            setBounds(100, 100, 500, 500);
             contentPane = new JPanel();
             contentPane.setBackground(Color.WHITE);
             contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -123,7 +123,7 @@ private GamePanel gamePanel;
                     if (guiController.playerTurn == 1) {
                         y.setIcon(new ImageIcon(GUItest.class.getResource("/new/O.png")));
 
-                        y.getRootPane().getContentPane().getComponent(y.converterFromMinorPosToMajorPos(y.getMajorX(),y.getMajorY())).setBackground(Color.CYAN);
+                        y.getRootPane().getContentPane().getComponent(y.converterFromMinorPosToMajorPos(y.getMajorX(),y.getMajorY())-1).setBackground(Color.CYAN);
 
                         if(guiController.innerGameWon == true)
                         {
@@ -138,7 +138,7 @@ private GamePanel gamePanel;
 
                     if(guiController.innerGameWon == true)
                     {
-                        y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setEnabled(false);
+                        y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setVisible(false);
                     }
 
                 }
