@@ -285,7 +285,7 @@ public class JGuiLabel extends JLabel {
 		}
 
 
-		else if(mx == 2 && my == 2)
+		else if(ix == 2 && iy == 2)
 		{
 			majorNumber = 5;
 		}
