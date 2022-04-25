@@ -66,7 +66,12 @@ private GamePanel gamePanel;
             setContentPane(contentPane);
             contentPane.setLayout(new GridLayout(3, 3, 0, 0));
 
-            JGuiLabel [][] grid;
+
+            JGuiLabel [][] grid = new JGuiLabel[3][3];
+            //Maybe use this array in the for loops to get the coordinates of each panel? And
+            // this way, know how to isolate it?
+
+
 
             for (i = 0 ; i< 9; i++) {
             JPanel panel = new JPanel();
@@ -77,39 +82,70 @@ private GamePanel gamePanel;
 
             for (j = 0; j<9; j++) {
             JPanel panel_1 = new JPanel();
+
+            //grid [i][j];
             panel_1.addMouseListener(new MouseAdapter() {
             	@Override
             	public void mouseClicked(MouseEvent e) {
 
-        			JPanel x = (JPanel) e.getComponent();
-            		JGuiLabel y = (JGuiLabel) x.getComponent(0);
+                    JPanel x = (JPanel) e.getComponent();
+                    JGuiLabel y = (JGuiLabel) x.getComponent(0);
+
+                    // while(guiController.workingBoard.checkValid() == true) // we're missing the checkValid for this
+                    //Which we could use to disbale the swithcing between images
+
+                    //System.out.println("Major pos: "+y.getMX()); // Provides major pos from 0-8
+                    //System.out.println("Minor pos: "+y.getMY()); // Provides minor pos from 0-8
+
+                    System.out.println("major pos x:" + y.getMajorX()); // Provides rows from 1-3 order
+                    System.out.println("Major pos y: " + y.getMajorY()); // Provides columns from 1-3 order
+
+                    System.out.println("TEST FOR X " + y.getInnerX()); // Provides rows from 1-3 order
+                    System.out.println("TEST FOR Y " + y.getInnerY()); // Provides columns from 1-3 order
+
+                    //grid.
 
 
-                    System.out.println("Major pos: "+y.getMX());
-                    System.out.println("major pos x:"+ y.getMajorX());
-                    System.out.println("Minor pos: "+y.getMY());
-                    System.out.println("Major pos y: "+y.getMajorY());
-
-
-
-                    buttonPressedUpdate(y.getMajorX(),y.getMajorY(), y.getInnerX(), y.getInnerY());
+                    buttonPressedUpdate(y.getMajorX(), y.getMajorY(), y.getInnerX(), y.getInnerY());
 
                     if (guiController.counter % 2 == 0) {
 //                        turnId = 2;
                         guiController.playerTurn = 2;
+                        //y.getRootPane().getContentPane().setVisible(false); //Made it invisible in turn 1
+
+
                     } else {
 //                        turnId = 1;
                         guiController.playerTurn = 1;
+                        //y.getRootPane().getContentPane().setVisible(true);
                     }
 
-            		if (guiController.playerTurn == 1) {
-            		y.setIcon(new ImageIcon(GUItest.class.getResource("/new/O.png")));
-            		}
-            		else if (guiController.playerTurn == 2)
-            			y.setIcon(new ImageIcon(GUItest.class.getResource("/new/X.png")));
+                    if (guiController.playerTurn == 1) {
+                        y.setIcon(new ImageIcon(GUItest.class.getResource("/new/O.png")));
 
-            	}
+                        y.getRootPane().getContentPane().getComponent(y.converterFromMinorPosToMajorPos(y.getMajorX(),y.getMajorY())).setBackground(Color.CYAN);
+
+                        if(guiController.innerGameWon == true)
+                        {
+                            y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setVisible(false);
+                            //y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setEnabled(false);
+                        }
+
+
+
+                    } else if (guiController.playerTurn == 2)
+                        y.setIcon(new ImageIcon(GUItest.class.getResource("/new/X.png")));
+
+                    if(guiController.innerGameWon == true)
+                    {
+                        y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setEnabled(false);
+                    }
+
+                }
+
+
             });
+
             panel_1.setBorder(new LineBorder(new Color(255, 200, 0), 3));
             panel.add(panel_1);
             panel_1.setLayout(new GridLayout(1, 1, 0, 0));
@@ -123,7 +159,14 @@ private GamePanel gamePanel;
             }
         }
 
+
+
+        //Maybe separte this into two methods? One for updating the board,
+    // the other for checkwins
         public void buttonPressedUpdate(int majorx, int majory, int innerx, int innery ){
+
+            JGuiLabel testLabel = new JGuiLabel(majorx, majory, innerx, innery);
+            JGuiLabel testLabel2 = new JGuiLabel(majorx, majory);
 
             guiController.workingBoard = guiController.mainBoard.getInnerBoard(majorx-1,majory-1);
 
@@ -137,12 +180,55 @@ private GamePanel gamePanel;
             if(guiController.innerGameWon == true){
                 guiController.workingBoard.setWinnerID(guiController.playerTurn);
                 guiController.mainBoard.updateBoard();
+                System.out.println("Game Won!");
+
+                //testLabel2.getRootPane().getContentPane().getComponent(0).setVisible(false);
+
+                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("tictatoe/res/circle-image.png")));
+                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("/new/circle-image.png")));
+                //testLabel.setVisible(false);
+                //testLabel2.setBackground(Color.GREEN);
+
+                //testLabel2.setVisible(true);
+
+                //testLabel2.getRootPane().getContentPane().setVisible(false);
+
+
+
             }
 
             System.out.println(guiController.mainBoard.getBoard());
 
         }
-        }
+
+//        public boolean winTest()
+//        {
+//            if(guiController.innerGameWon == true){
+//                guiController.workingBoard.setWinnerID(guiController.playerTurn);
+//                guiController.mainBoard.updateBoard();
+//                System.out.println("Game Won!");
+//                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("tictatoe/res/circle-image.png")));
+//                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("/new/circle-image.png")));
+//                //testLabel.setVisible(false);
+//                //testLabel2.setBackground(Color.GREEN);
+//
+//                //testLabel2.setVisible(true);
+//
+//                //testLabel2.getRootPane().getContentPane().setVisible(false);
+//
+//
+//
+//            }
+//
+//            return guiController.innerGameWon;
+//        }
+
+
+
+}
+
+
+
 
 
 
