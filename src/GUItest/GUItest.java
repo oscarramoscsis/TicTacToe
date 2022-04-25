@@ -134,6 +134,22 @@ private GamePanel gamePanel;
                         System.out.println("Inner X " + y.getInnerX());
                         System.out.println("Inner Y " + y.getInnerY());
 
+                        if (buttonPressedUpdate(y.getMajorX(), y.getMajorY(), y.getInnerX(), y.getInnerY())) {
+                            if (guiController.counter % 2 == 0) {
+                                guiController.playerTurn = 2;
+                            } else {
+                                guiController.playerTurn = 1;
+                            }
+
+
+                            if (guiController.playerTurn == 1) {
+                                y.setIcon(new ImageIcon(GUItest.class.getResource("/new/O.png")));
+                            } else if (guiController.playerTurn == 2)
+                                y.setIcon(new ImageIcon(GUItest.class.getResource("/new/X.png")));
+                        } else
+                            System.out.println("invalid");
+
+
                         if(guiController.innerGameWon == true)
                         {
                             y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setVisible(false);
@@ -167,77 +183,34 @@ private GamePanel gamePanel;
             }
             }
         }
+        public static void check() {
+            guiController.innerGameWon = guiController.workingBoard.checkWin();
 
+            if (guiController.innerGameWon == true) {
+                guiController.workingBoard.setWinnerID(guiController.playerTurn);
+                guiController.mainBoard.updateBoard();
+            }
 
+    }
 
-        //Maybe separte this into two methods? One for updating the board,
-    // the other for checkwins
-        public void buttonPressedUpdate(int majorx, int majory, int innerx, int innery ){
+    public boolean buttonPressedUpdate(int majorx, int majory, int innerx, int innery) {
+        guiController.workingBoard = guiController.mainBoard.getInnerBoard(majorx - 1, majory - 1);
 
-            JGuiLabel testLabel = new JGuiLabel(majorx, majory, innerx, innery);
-            JGuiLabel testLabel2 = new JGuiLabel(majorx, majory);
+        if (guiController.workingBoard.checkValid((innerx - 1), (innery - 1)) == true) {
 
-            guiController.workingBoard = guiController.mainBoard.getInnerBoard(majorx-1,majory-1);
-
-            guiController.workingBoard.updateBoard(guiController.playerTurn, (innerx-1), (innery-1));
-
+            guiController.workingBoard.updateBoard(guiController.playerTurn, (innerx - 1), (innery - 1));
             guiController.counter++;
 
             System.out.println(guiController.workingBoard);
-            guiController.innerGameWon = guiController.workingBoard.checkWin();
-
-            if(guiController.innerGameWon == true){
-                guiController.workingBoard.setWinnerID(guiController.playerTurn);
-                guiController.mainBoard.updateBoard();
-                System.out.println("Game Won!");
-
-                //testLabel2.getRootPane().getContentPane().getComponent(0).setVisible(false);
-
-                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("tictatoe/res/circle-image.png")));
-                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("/new/circle-image.png")));
-                //testLabel.setVisible(false);
-                //testLabel2.setBackground(Color.GREEN);
-
-                //testLabel2.setVisible(true);
-
-                //testLabel2.getRootPane().getContentPane().setVisible(false);
-
-
-
-            }
+            check();
 
             System.out.println(guiController.mainBoard.getBoard());
-
+            return true;
+        } else {
+            System.out.println("invalid move");
+            return false;
         }
 
-//        public boolean winTest()
-//        {
-//            if(guiController.innerGameWon == true){
-//                guiController.workingBoard.setWinnerID(guiController.playerTurn);
-//                guiController.mainBoard.updateBoard();
-//                System.out.println("Game Won!");
-//                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("tictatoe/res/circle-image.png")));
-//                //testLabel.setIcon(new ImageIcon(GUItest.class.getResource("/new/circle-image.png")));
-//                //testLabel.setVisible(false);
-//                //testLabel2.setBackground(Color.GREEN);
-//
-//                //testLabel2.setVisible(true);
-//
-//                //testLabel2.getRootPane().getContentPane().setVisible(false);
-//
-//
-//
-//            }
-//
-//            return guiController.innerGameWon;
-//        }
-
-
+    }
 
 }
-
-
-
-
-
-
