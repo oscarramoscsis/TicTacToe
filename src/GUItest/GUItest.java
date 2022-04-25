@@ -16,15 +16,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GUItest extends JFrame {
-    /**
-     *
-     */
-
-    // private int counter = 0;
-//    private int turnId;
-//    //private majorBoard mainBoard;
-//    private innerBoard workingBoard;
-//    private majorBoard mainBoard = new majorBoard();
 
     private int i;
     private int j;
