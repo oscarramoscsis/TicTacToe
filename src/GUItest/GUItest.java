@@ -31,6 +31,7 @@ private int j;
 private JGuiLabel L;
 private BufferedImage marker;
 private GamePanel gamePanel;
+private int tempVal;
 
 
 
@@ -91,6 +92,11 @@ private GamePanel gamePanel;
                     JPanel x = (JPanel) e.getComponent();
                     JGuiLabel y = (JGuiLabel) x.getComponent(0);
 
+                    // while(guiController.workingBoard.checkValid() == true) // we're missing the checkValid for this
+                    //Which we could use to disbale the swithcing between images
+
+                    //System.out.println("Major pos: "+y.getMX()); // Provides major pos from 0-8
+                    //System.out.println("Minor pos: "+y.getMY()); // Provides minor pos from 0-8
 
                     System.out.println("major pos x:" + y.getMajorX()); // Provides rows from 1-3 order
                     System.out.println("Major pos y: " + y.getMajorY()); // Provides columns from 1-3 order
@@ -107,19 +113,28 @@ private GamePanel gamePanel;
 
 
                         if (guiController.playerTurn == 1) {
+
                             y.setIcon(new ImageIcon(GUItest.class.getResource("/new/O.png")));
                             y.getRootPane().getContentPane().getComponent(y.converterFromMinorPosToMajorPos(y.getInnerX(),y.getInnerY())-1).setBackground(Color.CYAN);
-                        } else if (guiController.playerTurn == 2)
+                            tempVal = y.converterFromMinorPosToMajorPos(y.getInnerX(),y.getInnerY())-1;
+
+                        }
+
+                        else if (guiController.playerTurn == 2)
+                        {
                             y.setIcon(new ImageIcon(GUItest.class.getResource("/new/X.png")));
+                            y.getRootPane().getContentPane().getComponent(tempVal).setBackground(Color.red);
+                            tempVal= y.converterFromMinorPosToMajorPos(y.getInnerX(),y.getInnerY())-1;
+                        }
                     } else
                         System.out.println("invalid");
 
 
-                    if(guiController.innerGameWon == true)
-                    {
-                        y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setVisible(false);
-                        //y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setEnabled(false);
-                    }
+                        if(guiController.innerGameWon == true)
+                        {
+                            y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setVisible(false);
+                            //y.getRootPane().getContentPane().getComponent(y.converterForMajorPos(y.getMajorX(),y.getMajorY())-1).setEnabled(false);
+                        }
 
 
                 }
