@@ -6,4 +6,5 @@ public class guiController {
     public static majorBoard mainBoard = new majorBoard();
     public static innerBoard workingBoard = new innerBoard();
     public static boolean innerGameWon = false;
+    public static boolean outerGameWon = false;
 }
